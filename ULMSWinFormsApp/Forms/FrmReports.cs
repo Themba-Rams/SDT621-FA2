@@ -21,8 +21,7 @@ namespace ULMSWinFormsApp.Forms
             string reportType = cmbReportType.Text;
             string studentId = txtReportStudentId.Text;
 
-            // Intentional poor performance simulation
-            Thread.Sleep(4000);
+            // Thread.Sleep removed - was blocking UI thread for 4 seconds
 
             StringBuilder report = new StringBuilder();
 
@@ -43,7 +42,7 @@ namespace ULMSWinFormsApp.Forms
                 report.AppendLine("Subject 1: 78");
                 report.AppendLine("Subject 2: 65");
                 report.AppendLine("Subject 3: 80");
-                report.AppendLine("Average: 169");
+                report.AppendLine("Average: 74.33");
             }
             else if (reportType == "Enrollment Report")
             {

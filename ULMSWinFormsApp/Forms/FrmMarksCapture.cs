@@ -23,12 +23,20 @@ namespace ULMSWinFormsApp.Forms
 
             record.StudentId = txtMarkStudentId.Text;
             record.StudentName = txtMarkStudentName.Text;
-            record.Subject1 = Convert.ToDouble(txtSubject1.Text);
-            record.Subject2 = Convert.ToDouble(txtSubject2.Text);
-            record.Subject3 = Convert.ToDouble(txtSubject3.Text);
 
-            // Intentional faulty calculation
-            record.Average = record.Subject1 + record.Subject2 + record.Subject3 / 3;
+            try
+            {
+                record.Subject1 = Convert.ToDouble(txtSubject1.Text);
+                record.Subject2 = Convert.ToDouble(txtSubject2.Text);
+                record.Subject3 = Convert.ToDouble(txtSubject3.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Marks must be numeric values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            record.Average = (record.Subject1 + record.Subject2 + record.Subject3) / 3;
 
             if (record.Average >= 50)
             {

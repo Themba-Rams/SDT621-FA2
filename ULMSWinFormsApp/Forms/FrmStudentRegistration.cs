@@ -19,13 +19,18 @@ namespace ULMSWinFormsApp.Forms
 
         private void btnSaveStudent_Click(object sender, EventArgs e)
         {
-            // Intentional weak validation for testing purposes
+            if (!int.TryParse(txtAge.Text, out int age))
+            {
+                MessageBox.Show("Age must be a valid number.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Student student = new Student
             {
                 StudentId = txtStudentId.Text,
                 FullName = txtFullName.Text,
                 Email = txtEmail.Text,
-                Age = int.Parse(txtAge.Text),
+                Age = age,
                 Programme = cmbProgramme.Text
             };
 
